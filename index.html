@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kobi H. Paracuelles — Virtual Assistant & Tech Support Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-50: #f0faf4;
+    --green-100: #d6f0e0;
+    --green-200: #acdec2;
+    --green-300: #76c69e;
+    --green-400: #4aab7e;
+    --green-500: #2e8f63;
+    --green-600: #22704d;
+    --sage: #8aab96;
+    --sage-light: #c8dcd0;
+    --white: #ffffff;
+    --gray-50: #f8f9f8;
+    --gray-100: #eef0ee;
+    --gray-200: #d4d8d4;
+    --gray-400: #8e968e;
+    --gray-600: #4e564e;
+    --gray-800: #1e261e;
+    --shadow-sm: 0 2px 8px rgba(46,143,99,0.08);
+    --shadow-md: 0 8px 24px rgba(46,143,99,0.12);
+    --shadow-lg: 0 16px 48px rgba(46,143,99,0.16);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--gray-800); line-height: 1.6; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--green-100);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--green-500); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green-500); }
+  .nav-cta { background: var(--green-500); color: white !important; padding: 9px 22px; border-radius: 50px; font-weight: 600 !important; font-size: 0.88rem !important; }
+  .nav-cta:hover { background: var(--green-600) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    background: linear-gradient(135deg, var(--green-50) 0%, var(--white) 60%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 500px; height: 500px; background: radial-gradient(circle, var(--green-100) 0%, transparent 70%); border-radius: 50%; }
+  .hero::after { content: ''; position: absolute; bottom: -80px; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, var(--sage-light) 0%, transparent 70%); border-radius: 50%; opacity: 0.5; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--green-100); color: var(--green-600); padding: 6px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 24px; }
+  .hero-tag span { width: 6px; height: 6px; background: var(--green-400); border-radius: 50%; display: inline-block; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.2; color: var(--gray-800); margin-bottom: 20px; }
+  .hero h1 em { color: var(--green-500); font-style: italic; }
+  .hero p { color: var(--gray-600); font-size: 1.05rem; max-width: 480px; margin-bottom: 28px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn-primary { background: var(--green-500); color: white; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(46,143,99,0.3); transition: all 0.3s; }
+  .btn-primary:hover { background: var(--green-600); transform: translateY(-2px); }
+  .btn-secondary { background: white; color: var(--green-600); padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--green-200); transition: all 0.3s; }
+  .btn-secondary:hover { border-color: var(--green-400); background: var(--green-50); transform: translateY(-2px); }
+  .hero-certs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .cert-badge { background: white; border: 1.5px solid var(--green-200); color: var(--green-600); padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+  .hero-stats { display: flex; gap: 32px; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--green-500); line-height: 1; }
+  .stat-label { font-size: 0.8rem; color: var(--gray-400); font-weight: 500; }
+  .photo-frame { width: 340px; height: 400px; background: linear-gradient(145deg, var(--green-100), var(--sage-light)); border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; box-shadow: var(--shadow-lg); margin: 0 auto; }
+  .photo-initials { width: 100px; height: 100px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--green-500); box-shadow: var(--shadow-md); }
+
+  /* SHARED */
+  section { padding: 100px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { display: inline-flex; align-items: center; gap: 8px; color: var(--green-500); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .section-label::before { content: ''; width: 20px; height: 2px; background: var(--green-400); border-radius: 2px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--gray-800); margin-bottom: 16px; }
+  .section-sub { color: var(--gray-400); font-size: 1rem; max-width: 560px; line-height: 1.7; }
+
+  /* ABOUT */
+  .about { background: var(--gray-50); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .about-card { background: white; border-radius: var(--radius); padding: 28px; border: 1px solid var(--green-100); box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+  .about-card-title { font-weight: 700; font-size: 0.78rem; color: var(--gray-400); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .about-info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 0.87rem; }
+  .about-info-row:last-child { border-bottom: none; }
+  .about-info-row span:first-child { color: var(--gray-400); }
+  .about-info-row span:last-child { color: var(--gray-800); font-weight: 600; text-align: right; max-width: 60%; }
+  .cert-card { background: white; border-radius: var(--radius-sm); padding: 16px 20px; border: 1.5px solid var(--green-200); display: flex; align-items: center; gap: 12px; margin-bottom: 10px; transition: all 0.2s; }
+  .cert-card:hover { border-color: var(--green-400); box-shadow: var(--shadow-sm); }
+  .cert-name { font-weight: 600; font-size: 0.87rem; color: var(--gray-800); }
+  .cert-org { font-size: 0.76rem; color: var(--gray-400); }
+  .about-traits { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+  .trait-card { background: white; border-radius: var(--radius-sm); padding: 18px; border: 1px solid var(--green-100); display: flex; align-items: flex-start; gap: 12px; }
+  .trait-icon { width: 36px; height: 36px; background: var(--green-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+  .trait-name { font-weight: 600; font-size: 0.88rem; color: var(--gray-800); }
+  .trait-desc { font-size: 0.78rem; color: var(--gray-400); margin-top: 2px; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 60px; }
+  .service-card { background: white; border-radius: var(--radius); padding: 32px; border: 1px solid var(--green-100); box-shadow: var(--shadow-sm); transition: all 0.3s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-300), var(--green-500)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--green-200); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { width: 52px; height: 52px; background: var(--green-50); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+  .service-card h3 { font-size: 1rem; font-weight: 600; color: var(--gray-800); margin-bottom: 10px; }
+  .service-card p { font-size: 0.87rem; color: var(--gray-400); line-height: 1.6; }
+
+  /* SKILLS */
+  .skills { background: var(--green-50); }
+  .skills-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+  .skill-bars { display: flex; flex-direction: column; gap: 20px; }
+  .skill-bar-item label { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; color: var(--gray-600); margin-bottom: 8px; }
+  .skill-bar-item label span { color: var(--green-500); }
+  .bar-track { height: 8px; background: var(--green-100); border-radius: 50px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--green-300), var(--green-500)); border-radius: 50px; animation: fillBar 1.2s ease-out both; }
+  @keyframes fillBar { from { width: 0 !important; } }
+  .tag-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--gray-800); margin-bottom: 16px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag { background: white; color: var(--green-600); padding: 8px 16px; border-radius: 50px; font-size: 0.83rem; font-weight: 500; border: 1.5px solid var(--green-200); transition: all 0.2s; }
+  .tag:hover { background: var(--green-500); color: white; border-color: var(--green-500); }
+
+  /* TIMELINE */
+  .timeline { position: relative; margin-top: 60px; padding-left: 40px; }
+  .timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--green-100); }
+  .timeline-item { position: relative; margin-bottom: 48px; }
+  .timeline-item::before { content: ''; position: absolute; left: -34px; top: 6px; width: 14px; height: 14px; background: var(--green-400); border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 3px var(--green-200); }
+  .tl-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .tl-date { background: var(--green-100); color: var(--green-600); padding: 3px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; }
+  .tl-company { font-size: 0.82rem; color: var(--gray-400); }
+  .tl-role { font-size: 1.05rem; font-weight: 700; color: var(--gray-800); margin-bottom: 10px; }
+  .tl-desc { font-size: 0.88rem; color: var(--gray-600); line-height: 1.7; }
+  .tl-desc ul { padding-left: 16px; }
+  .tl-desc li { margin-bottom: 4px; }
+
+  /* TOOLS */
+  .tools { background: var(--gray-50); }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-top: 60px; }
+  .tool-card { background: white; border-radius: var(--radius-sm); padding: 20px 16px; text-align: center; border: 1px solid var(--green-100); transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--green-300); }
+  .tool-icon { font-size: 1.8rem; }
+  .tool-name { font-size: 0.8rem; font-weight: 600; color: var(--gray-600); }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 60px; }
+  .testi-card { background: white; border-radius: var(--radius); padding: 32px; border: 1px solid var(--green-100); box-shadow: var(--shadow-sm); position: relative; }
+  .quote-mark { font-family: 'DM Serif Display', serif; font-size: 5rem; line-height: 0.5; color: var(--green-100); position: absolute; top: 24px; right: 24px; }
+  .testi-text { font-size: 0.93rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green-200), var(--sage)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--green-600); font-size: 0.9rem; flex-shrink: 0; }
+  .testi-name { font-weight: 700; font-size: 0.9rem; color: var(--gray-800); }
+  .testi-role { font-size: 0.78rem; color: var(--gray-400); }
+  .stars { color: #f5c842; font-size: 0.85rem; margin-bottom: 12px; }
+
+  /* CONTACT */
+  .contact { background: linear-gradient(135deg, var(--green-50), white); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .contact-info { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item { display: flex; align-items: center; gap: 16px; padding: 18px; background: white; border-radius: var(--radius-sm); border: 1px solid var(--green-100); box-shadow: var(--shadow-sm); }
+  .contact-item-icon { width: 44px; height: 44px; background: var(--green-50); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+  .contact-item-label { font-size: 0.78rem; color: var(--gray-400); font-weight: 500; }
+  .contact-item-val { font-size: 0.9rem; font-weight: 600; color: var(--gray-800); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 0.83rem; font-weight: 600; color: var(--gray-600); }
+  .form-group input, .form-group textarea { padding: 13px 16px; border: 1.5px solid var(--green-100); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--gray-800); outline: none; transition: border-color 0.2s; background: white; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--green-400); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit { background: var(--green-500); color: white; padding: 15px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(46,143,99,0.3); transition: all 0.3s; align-self: flex-start; }
+  .form-submit:hover { background: var(--green-600); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--gray-800); color: var(--gray-200); padding: 48px 5% 32px; text-align: center; }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--green-300); margin-bottom: 16px; }
+  .footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 24px; flex-wrap: wrap; }
+  .footer-links a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green-300); }
+  .footer-copy { font-size: 0.8rem; color: var(--gray-400); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner, .about-grid, .skills-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .photo-frame { width: 260px; height: 300px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .hero { padding: 100px 5% 60px; }
+    .about-traits { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Kobi Paracuelles</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span></span> Open to Remote Opportunities</div>
+      <h1>Tech-Savvy Virtual Assistant Delivering <em>Reliable, Organized & Efficient</em> Support</h1>
+      <p>I'm Kobi — a Salesforce-certified electronics engineer turned virtual assistant, bringing technical precision, automation expertise, and genuine client focus to every task I handle.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">💼 Hire Me</a>
+        <a href="https://drive.google.com/uc?export=download&id=1dvJgC3GwDjsX-JgkxwhqRdGPLQ5i-CsL" target="_blank" class="btn-secondary" id="resume-btn">⬇️ Download Resume</a>
+      </div>
+      <div class="hero-certs">
+        <span class="cert-badge">🏅 Certified MuleSoft Associate</span>
+        <span class="cert-badge">🤖 Salesforce AI Associate</span>
+        <span class="cert-badge">⚡ n8n Automation</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Certifications</div></div>
+        <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Companies Served</div></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <div class="photo-frame">
+        <div class="photo-initials">KP</div>
+        <span style="color:var(--green-600);font-weight:600;font-size:0.95rem">Kobi H. Paracuelles</span>
+        <span style="font-size:0.75rem;color:var(--green-400)">VA & Tech Support Specialist</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Engineering Mindset. Assistant Heart.</h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-card">
+          <div class="about-card-title">Personal Info</div>
+          <div class="about-info-row"><span>Full Name</span><span>Kobi H. Paracuelles</span></div>
+          <div class="about-info-row"><span>Location</span><span>Lapu-lapu City, Cebu, PH</span></div>
+          <div class="about-info-row"><span>Email</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741f1b161d04150615170111181811074646341319151d185a171b19">[email&#160;protected]</a></span></div>
+          <div class="about-info-row"><span>Phone</span><span>09666085517</span></div>
+          <div class="about-info-row"><span>Degree</span><span>BSECE – University of Cebu</span></div>
+          <div class="about-info-row"><span>Availability</span><span>Open to Remote Work</span></div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">Certifications</div>
+          <div class="cert-card"><span style="font-size:1.4rem">☁️</span><div><div class="cert-name">Certified MuleSoft Associate</div><div class="cert-org">Salesforce / MuleSoft</div></div></div>
+          <div class="cert-card"><span style="font-size:1.4rem">🤖</span><div><div class="cert-name">Salesforce Certified AI Associate</div><div class="cert-org">Salesforce</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p style="color:var(--gray-600);font-size:1rem;line-height:1.8;margin-bottom:20px">Hi, I'm <strong>Kobi</strong> — a Bachelor of Science in Electronics Engineering graduate with hands-on experience as a Packaged App Development Associate and Application Support Engineer at <strong>Accenture</strong>. I bring a unique edge to virtual assistance: a technical background that lets me handle not just admin tasks, but also CRM management, system monitoring, API support, and workflow automation — all remotely and reliably.</p>
+        <p style="color:var(--gray-600);font-size:1rem;line-height:1.8;margin-bottom:28px">Certified in MuleSoft integration and Salesforce AI, I'm the rare VA who understands your business tools at a deeper level. Whether you need someone to manage your inbox, maintain your Salesforce CRM, build n8n automation workflows, or keep your systems running smoothly — I deliver results you can count on.</p>
+        <div class="about-traits">
+          <div class="trait-card"><div class="trait-icon">🎯</div><div><div class="trait-name">Detail-Oriented</div><div class="trait-desc">Engineer-level precision on every task</div></div></div>
+          <div class="trait-card"><div class="trait-icon">📋</div><div><div class="trait-name">Organized</div><div class="trait-desc">Systems that scale with your business</div></div></div>
+          <div class="trait-card"><div class="trait-icon">💡</div><div><div class="trait-name">Proactive</div><div class="trait-desc">Solving problems before they arise</div></div></div>
+          <div class="trait-card"><div class="trait-icon">🤝</div><div><div class="trait-name">Reliable</div><div class="trait-desc">Accenture-trained, output-oriented</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What I Offer</div>
+    <h2 class="section-title">Services Tailored to Your Needs</h2>
+    <p class="section-sub">From inbox management to Salesforce administration — I handle what keeps your business running at full speed.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">📧</div><h3>Email & Calendar Management</h3><p>Inbox organization, email drafting, appointment scheduling, and calendar coordination — so your time is always well-spent and nothing falls through the cracks.</p></div>
+      <div class="service-card"><div class="service-icon">🗂️</div><h3>Administrative Support</h3><p>Document preparation, file organization, report formatting, data entry, and day-to-day task handling to keep your operations running without friction.</p></div>
+      <div class="service-card"><div class="service-icon">⚡</div><h3>Workflow Automation (n8n)</h3><p>Design and implement smart automated workflows using n8n to eliminate repetitive manual tasks and save you hours every single week.</p></div>
+      <div class="service-card"><div class="service-icon">☁️</div><h3>Salesforce CRM Management</h3><p>Salesforce administration, data management, lead tracking, workflow rules, and integration via MuleSoft — certified and ready to optimize your CRM.</p></div>
+      <div class="service-card"><div class="service-icon">🔧</div><h3>Application & Technical Support</h3><p>Application remediation, incident response, system monitoring, troubleshooting, and documentation. I keep your tools stable, performant, and running.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>Data Entry & Research</h3><p>Accurate data management, Excel dashboard creation, online research, spreadsheet maintenance, and clean, well-formatted reports on demand.</p></div>
+      <div class="service-card"><div class="service-icon">🖥️</div><h3>API & System Monitoring</h3><p>Uptime monitoring, API testing, system status reporting, and proactive issue detection to maintain application stability and performance.</p></div>
+      <div class="service-card"><div class="service-icon">💬</div><h3>Client Services & Support</h3><p>Professional client communication, inquiry handling, support ticket management, and high satisfaction through responsive, clear, and empathetic service.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Core Competencies</h2>
+    <div class="skills-inner">
+      <div class="skill-bars">
+        <div class="skill-bar-item"><label>Salesforce Admin & Development <span>90%</span></label><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-item"><label>Application Support & Remediation <span>92%</span></label><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
+        <div class="skill-bar-item"><label>n8n Workflow Automation <span>85%</span></label><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-item"><label>MuleSoft Integration Cloud <span>85%</span></label><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-item"><label>MS Excel / Dashboard Creation <span>88%</span></label><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-item"><label>Client Services & Communication <span>93%</span></label><div class="bar-track"><div class="bar-fill" style="width:93%"></div></div></div>
+      </div>
+      <div>
+        <div class="tag-title">Additional Skills</div>
+        <div class="skill-tags">
+          <span class="tag">Salesforce AI</span>
+          <span class="tag">Arduino / C++</span>
+          <span class="tag">Electronic Circuits</span>
+          <span class="tag">Cybersecurity Basics</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Technical Documentation</span>
+          <span class="tag">Incident Resolution</span>
+          <span class="tag">System Monitoring</span>
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">AutoCAD Basics</span>
+          <span class="tag">Engineering Support</span>
+          <span class="tag">Output-Oriented</span>
+          <span class="tag">Structured Cabling</span>
+          <span class="tag">ICT / DRRM Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Work Experience</div>
+    <h2 class="section-title">My Professional Journey</h2>
+    <p class="section-sub">From engineering internships to Accenture — a career built on technical excellence and client-focused delivery.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-meta"><span class="tl-date">2024 – 2026</span><span class="tl-company">Accenture · Remote / On-site</span></div>
+        <div class="tl-role">Packaged App Development Associate & Application Support Engineer</div>
+        <div class="tl-desc"><ul>
+          <li>Developed and maintained enterprise packaged applications within Accenture's large-scale tech environment</li>
+          <li>Provided application support and remediation, ensuring system stability and minimizing client-facing downtime</li>
+          <li>Diagnosed and resolved technical incidents efficiently, maintaining high client satisfaction standards</li>
+          <li>Leveraged Salesforce platforms and MuleSoft integrations to streamline and automate business processes</li>
+          <li>Collaborated cross-functionally with engineering, operations, and client service teams on critical systems</li>
+        </ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-meta"><span class="tl-date">2023 – 2024</span><span class="tl-company">Applied Expert Systems and Software Inc. (APEXs)</span></div>
+        <div class="tl-role">Technical Support & Weather Station Installer</div>
+        <div class="tl-desc"><ul>
+          <li>Installed and commissioned weather monitoring stations across multiple field sites</li>
+          <li>Provided on-site and remote technical support for all deployed monitoring systems</li>
+          <li>Maintained detailed documentation of installations, configurations, and troubleshooting procedures</li>
+          <li>Coordinated with clients to verify equipment performance met operational and accuracy requirements</li>
+        </ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-meta"><span class="tl-date">2022 (Internship)</span><span class="tl-company">Cine Cebu Television Network</span></div>
+        <div class="tl-role">Intern — Engineering, AutoCAD, IT & Broadcast Departments</div>
+        <div class="tl-desc"><ul>
+          <li>Rotated across Engineering, AutoCAD, IT, and Broadcast departments, gaining broad technical exposure</li>
+          <li>Supported IT infrastructure maintenance and broadcast equipment operations</li>
+          <li>Applied AutoCAD skills in real-world facility and engineering layout projects</li>
+        </ul></div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-meta"><span class="tl-date">2018 (Internship)</span><span class="tl-company">Pantronics Vismin Corporation</span></div>
+        <div class="tl-role">Engineering Intern</div>
+        <div class="tl-desc"><ul>
+          <li>Gained foundational experience in electronics engineering in a professional corporate environment</li>
+          <li>Assisted in the design and implementation of electronic circuits under expert supervision</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools" id="tools">
+  <div class="section-inner">
+    <div class="section-label">Tools & Software</div>
+    <h2 class="section-title">Tech Stack I Work With</h2>
+    <p class="section-sub">Proficient in the enterprise platforms and productivity tools that power modern businesses and remote teams.</p>
+    <div class="tools-grid">
+      <div class="tool-card"><div class="tool-icon">☁️</div><div class="tool-name">Salesforce</div></div>
+      <div class="tool-card"><div class="tool-icon">🔗</div><div class="tool-name">MuleSoft</div></div>
+      <div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name">n8n</div></div>
+      <div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">MS Excel</div></div>
+      <div class="tool-card"><div class="tool-icon">💼</div><div class="tool-name">MS Office</div></div>
+      <div class="tool-card"><div class="tool-icon">📁</div><div class="tool-name">Google Drive</div></div>
+      <div class="tool-card"><div class="tool-icon">📧</div><div class="tool-name">Gmail</div></div>
+      <div class="tool-card"><div class="tool-icon">📅</div><div class="tool-name">Google Calendar</div></div>
+      <div class="tool-card"><div class="tool-icon">📝</div><div class="tool-name">Google Docs</div></div>
+      <div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Google Sheets</div></div>
+      <div class="tool-card"><div class="tool-icon">📹</div><div class="tool-name">Zoom</div></div>
+      <div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name">Slack</div></div>
+      <div class="tool-card"><div class="tool-icon">✅</div><div class="tool-name">Trello</div></div>
+      <div class="tool-card"><div class="tool-icon">🗃️</div><div class="tool-name">Asana</div></div>
+      <div class="tool-card"><div class="tool-icon">📐</div><div class="tool-name">AutoCAD</div></div>
+      <div class="tool-card"><div class="tool-icon">🔌</div><div class="tool-name">Arduino</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What Colleagues & References Say</h2>
+    <p class="section-sub">Character references from verified professional contacts — available to connect upon request.</p>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Kobi is one of the most technically sharp and reliable professionals I've had the pleasure of working alongside. He's calm under pressure, precise in his work, and consistently delivers on time. A true asset to any team.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LG</div>
+          <div><div class="testi-name">Lilian Gabucan</div><div class="testi-role">Industrial Engineer & Data Analyst · Accenture</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Working with Kobi, I was consistently impressed by his attention to detail and ability to communicate complex technical matters clearly. He's someone clients and teams can genuinely depend on — every single time.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KF</div>
+          <div><div class="testi-name">Kristel Fortusa</div><div class="testi-role">Industrial Engineer · International Pharmaceutical Inc.</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Kobi has a rare combination of technical skill and a people-first attitude. He handles tasks with efficiency and always goes the extra mile. Whether it's a technical challenge or a client concern, he handles it with professionalism.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">VC</div>
+          <div><div class="testi-name">Vyne Lovel Catubig</div><div class="testi-role">Licensed Teacher & Travel Advisor · Wipro</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Ready to Work Together?</h2>
+    <p class="section-sub">Let's talk about how I can support your business. I typically respond within 24 hours.</p>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="contact-item"><div class="contact-item-icon">📧</div><div><div class="contact-item-label">Email</div><div class="contact-item-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c67636e657c6d7e6d6f79696060697f3e3e4c6b616d6560226f6361">[email&#160;protected]</a></div></div></div>
+        <div class="contact-item"><div class="contact-item-icon">📱</div><div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-val">09666085517</div></div></div>
+        <div class="contact-item"><div class="contact-item-icon">📍</div><div><div class="contact-item-label">Location</div><div class="contact-item-val">Lapu-lapu City, Cebu, Philippines</div></div></div>
+        <div class="contact-item"><div class="contact-item-icon">🌍</div><div><div class="contact-item-label">Work Setup</div><div class="contact-item-val">Open to Remote Work · Full-time</div></div></div>
+        <div class="contact-item"><div class="contact-item-icon">⏱️</div><div><div class="contact-item-label">Response Time</div><div class="contact-item-val">Within 24 hours</div></div></div>
+      </div>
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mwvnrrlw" method="POST">
+        <!-- Hidden field to route to Gmail -->
+        <input type="hidden" name="_replyto" value="kobiparacuelles22@gmail.com">
+        <input type="hidden" name="_subject" value="New message from your portfolio website!">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="Jane" required></div>
+          <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Doe" required></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="jane@example.com" required></div>
+        <div class="form-group"><label>Subject</label><input type="text" name="subject" placeholder="I'd like to hire you for..."></div>
+        <div class="form-group"><label>Message</label><textarea name="message" placeholder="Tell me a bit about your business and what kind of support you need..." required></textarea></div>
+        <div id="form-status" style="display:none;padding:12px 16px;border-radius:10px;font-size:0.88rem;font-weight:500;margin-bottom:4px;"></div>
+        <button type="submit" class="form-submit" id="submit-btn">Send Message ✉️</button>
+      </form>
+      <script>
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+        const btn = document.getElementById('submit-btn');
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          btn.textContent = 'Sending...';
+          btn.disabled = true;
+          const data = new FormData(form);
+          const action = form.action;
+          try {
+            const response = await fetch(action, {
+              method: 'POST', body: data,
+              headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+              status.style.display = 'block';
+              status.style.background = '#d6f0e0';
+              status.style.color = '#22704d';
+              status.textContent = '✅ Message sent! Kobi will reply to your email within 24 hours.';
+              form.reset();
+            } else {
+              throw new Error('Failed');
+            }
+          } catch {
+            status.style.display = 'block';
+            status.style.background = '#fde8e8';
+            status.style.color = '#b91c1c';
+            status.textContent = '❌ Oops! Something went wrong. Please email Kobi directly at kobiparacuelles22@gmail.com';
+          }
+          btn.textContent = 'Send Message ✉️';
+          btn.disabled = false;
+        });
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Kobi H. Paracuelles</div>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#experience">Ex
